@@ -1,0 +1,27 @@
+{
+  "name": "voodoo-mobile/yii2-environment",
+  "type": "library",
+  "description": "The library for managing environment for apps",
+  "keywords": [
+    "environment",
+    "config",
+    "flavor"
+  ],
+  "homepage": "https://github.com/voodoo-mobile/yii2-environment",
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "Voodoo Mobile Ltd",
+      "email": "contact@voodoo-mobile.com",
+      "homepage": "http://voodoo-mobile.com",
+    }
+  ],
+  "require": {
+    "php": ">=5.5.0"
+  },
+  "autoload": {
+    "psr-0": {
+      "Environment": "src"
+    }
+  }
+}
