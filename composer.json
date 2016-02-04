@@ -16,12 +16,26 @@
       "homepage": "http://voodoo-mobile.com"
     }
   ],
+  "minimum-stability": "dev",
   "require": {
-    "php": ">=5.5.0"
+    "php": ">=5.5.0",
+    "yiisoft/yii2": "~2.0"
   },
   "autoload": {
     "psr-0": {
       "Environment": "src"
+    },
+    "psr-4": {
+      "vm\\environment": "src/"
     }
+  },
+  "extra": {
+    "asset-installer-paths": {
+      "npm-asset-library": "vendor/npm",
+      "bower-asset-library": "vendor/bower"
+    },
+    "writable": [
+      "runtime"
+    ]
   }
 }
