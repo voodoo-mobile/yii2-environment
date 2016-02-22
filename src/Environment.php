@@ -62,6 +62,7 @@ class Environment extends Component
 
             if ($found = (!$found && $this->isActive($name))) {
                 $this->apply($name, $instance);
+                break;
             }
         }
 
