@@ -1,6 +1,7 @@
 <?php
 namespace vm\environment;
 
+use yii\base\Exception;
 use yii\helpers\ArrayHelper;
 use yii\helpers\Json;
 
@@ -31,9 +32,14 @@ class JsonFlavor extends Flavor
             throw new \Exception('Missing file named ' . $filename);
         }
 
-        $data             = Json::decode(file_get_contents($filename));
+        $data = Json::decode(file_get_contents($filename));
+        if (!$data) {
+            throw new Exception('The file contains invalid data');
+        }
 
         $this->components = ArrayHelper::getValue($data, 'components', []);
         $this->params     = ArrayHelper::getValue($data, 'params', []);
+
+        return true;
     }
 }

@@ -59,12 +59,15 @@ class Environment extends Component
         foreach ($this->flavors as $name => $flavor) {
             if ($found = (!$found && $this->isActive($name))) {
                 $this->createInstance($flavor, $name);
-                break;
+
+                return;
             }
         }
 
         if (!$found && $this->default) {
             $this->createInstance(ArrayHelper::getValue($this->flavors, $this->default), $this->default);
+        } else {
+            throw new \Exception('Could not find appropriate flavor to load. Is it even legal?');
         }
     }
 
@@ -98,20 +101,17 @@ class Environment extends Component
         /** @var Flavor $instance */
         $instance = \Yii::createObject($flavor);
 
-        $instance->name = $name;
-        $this->apply($name, $instance);
+        $this->activeFlavor = $instance->name = $name;
+        $this->apply($instance);
 
         return $instance;
     }
 
     /**
-     * @param        $name
      * @param Flavor $instance
      */
-    protected function apply($name, $instance)
+    protected function apply($instance)
     {
-        $this->activeFlavor = $name;
-
         if ($instance->prerequisites) {
             call_user_func($instance->prerequisites);
         }
