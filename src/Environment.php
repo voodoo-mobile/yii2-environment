@@ -57,18 +57,14 @@ class Environment extends Component
         $found = false;
 
         foreach ($this->flavors as $name => $flavor) {
-            /** @var Flavor $instance */
-            $instance = \Yii::createObject($flavor);
-
             if ($found = (!$found && $this->isActive($name))) {
-                $this->apply($name, $instance);
+                $this->createInstance($flavor, $name);
                 break;
             }
         }
 
         if (!$found && $this->default) {
-            $instance = \Yii::createObject(ArrayHelper::getValue($this->flavors, $this->default));
-            $this->apply($this->default, $instance);
+            $this->createInstance(ArrayHelper::getValue($this->flavors, $this->default), $this->default);
         }
     }
 
@@ -88,6 +84,24 @@ class Environment extends Component
     protected function isActive($name)
     {
         return file_exists(\Yii::getAlias('@app/' . $name));
+    }
+
+    /**
+     * @param $flavor
+     * @param $name
+     *
+     * @return Flavor
+     * @throws \yii\base\InvalidConfigException
+     */
+    protected function createInstance($flavor, $name)
+    {
+        /** @var Flavor $instance */
+        $instance = \Yii::createObject($flavor);
+
+        $instance->name = $name;
+        $this->apply($name, $instance);
+
+        return $instance;
     }
 
     /**
