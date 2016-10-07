@@ -43,5 +43,6 @@ abstract class Flavor extends Object
     {
         \Yii::$app->components = ArrayHelper::merge(\Yii::$app->components, $this->components);
         \Yii::$app->params     = ArrayHelper::merge(\Yii::$app->params, $this->params);
+        \Yii::$app->getErrorHandler()->register();
     }
 }
