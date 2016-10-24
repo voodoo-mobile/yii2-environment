@@ -1,9 +1,9 @@
 <?php
-namespace vm\environment;
+namespace vr\environment;
 
 /**
  * Class InlineFlavor
- * @package yii2vm\config
+ * @package vr\environment
  */
 class InlineFlavor extends Flavor
 {
