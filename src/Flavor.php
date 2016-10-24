@@ -1,5 +1,5 @@
 <?php
-namespace vm\environment;
+namespace vr\environment;
 
 use Closure;
 use yii\base\Object;
@@ -7,7 +7,7 @@ use yii\helpers\ArrayHelper;
 
 /**
  * Class Flavor
- * @package yii2vm\config
+ * @package vr\environment
  */
 abstract class Flavor extends Object
 {

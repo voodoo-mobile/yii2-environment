@@ -1,12 +1,12 @@
 <?php
-namespace vm\environment;
+namespace vr\environment;
 
 use yii\helpers\ArrayHelper;
 use yii\helpers\Json;
 
 /**
  * Class JsonFlavor
- * @package yii2vm\flavors
+ * @package vr\environment
  */
 class JsonFlavor extends Flavor
 {

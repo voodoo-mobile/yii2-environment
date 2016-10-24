@@ -1,5 +1,5 @@
 <?php
-namespace vm\environment;
+namespace vr\environment;
 
 use yii\base\Component;
 use yii\helpers\ArrayHelper;
@@ -10,11 +10,11 @@ use yii\helpers\ArrayHelper;
  * Complete new way to describe environment and modifications. Example of configuration
  *
  * 'environment'  => [
- *           'class'   => '\yii2vm\flavors\Environment',
+ *           'class'   => '\vr\flavors\Environment',
  *          'default' => 'production',
  *          'flavors' => [
  *              'develop'    => [
- *                  'class'        => '\yii2vm\flavors\InlineFlavor',
+ *                  'class'        => '\vr\flavors\InlineFlavor',
  *                  'components' => [
  *                      'db' => [
  *                          'username' => 'myusername'
@@ -22,7 +22,7 @@ use yii\helpers\ArrayHelper;
  *                  ]
  *              ],
  *              'production' => [
- *                  'class'         => '\yii2vm\flavors\ExternalFlavor',
+ *                  'class'         => '\vr\flavors\ExternalFlavor',
  *                  'filename'      => '@app/production.json',
  *                  'prerequisites' => function () {
  *                  }
@@ -30,7 +30,7 @@ use yii\helpers\ArrayHelper;
  *          ]
  *      ],
  *
- * @package yii2vm\config
+ * @package vr\environment
  */
 class Environment extends Component
 {

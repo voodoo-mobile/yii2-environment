@@ -1,5 +1,5 @@
 {
-  "name": "voodoo-mobile/yii2-environment",
+  "name": "voodoo-rocks/yii2-environment",
   "type": "library",
   "description": "The library for managing environment for apps",
   "keywords": [
@@ -7,13 +7,13 @@
     "config",
     "flavor"
   ],
-  "homepage": "https://github.com/voodoo-mobile/yii2-environment",
+  "homepage": "https://github.com/voodoo-rocks/yii2-environment",
   "license": "MIT",
   "authors": [
     {
-      "name": "Voodoo Mobile Ltd",
-      "email": "image@voodoo-mobile.com",
-      "homepage": "http://voodoo-mobile.com"
+      "name": "Voodoo Rocks Ltd",
+      "email": "public@voodoo.rocks",
+      "homepage": "http://voodoo.rocks"
     }
   ],
   "minimum-stability": "dev",
@@ -26,7 +26,7 @@
       "Environment": "src"
     },
     "psr-4": {
-      "vm\\environment\\": "src/"
+      "vr\\environment\\": "src/"
     }
   },
   "extra": {
