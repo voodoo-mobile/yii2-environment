@@ -1,6 +1,7 @@
 <?php
 namespace vr\environment;
 
+use vr\core\ArrayObject;
 use yii\base\Component;
 use yii\helpers\ArrayHelper;
 
@@ -72,14 +73,6 @@ class Environment extends Component
     }
 
     /**
-     * @return null
-     */
-    public function getActiveFlavor()
-    {
-        return $this->activeFlavor;
-    }
-
-    /**
      * @param string $name
      *
      * @return bool
@@ -119,5 +112,21 @@ class Environment extends Component
         if ($instance->prepare()) {
             $instance->apply();
         };
+    }
+
+    /**
+     * @return null
+     */
+    public function getActiveFlavor()
+    {
+        return $this->activeFlavor;
+    }
+
+    /**
+     * @return ArrayObject
+     */
+    public function getParams()
+    {
+        return new ArrayObject(\Yii::$app->params);
     }
 }
