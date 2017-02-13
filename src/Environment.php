@@ -82,9 +82,11 @@ class Environment extends Component
      */
     protected function isActive($name)
     {
-        return file_exists(\Yii::getAlias('@app/' . $name)) ?
-            true :
-            file_exists(\Yii::getAlias('@common/' . $name));
+        if (!$this->additionalAlias) {
+            return file_exists(\Yii::getAlias('@app/' . $name));
+        }
+
+        return file_exists(\Yii::getAlias($this->additionalAlias . '/' . $name));
     }
 
     /**
