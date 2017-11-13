@@ -54,9 +54,10 @@ class Environment extends Component
     public function init()
     {
         foreach ($this->flavors as $name => $flavor) {
-            $this->activeFlavor = $this->createInstance($flavor, $name);
+            $instance = $this->createInstance($flavor, $name);
 
-            if ($this->activeFlavor->isActive) {
+            if ($instance->isActive) {
+                $this->activeFlavor = $instance;
                 break;
             }
         }
@@ -81,9 +82,8 @@ class Environment extends Component
     protected function createInstance($flavor, $name)
     {
         /** @var Flavor $instance */
-        $instance = \Yii::createObject($flavor, [
-            'name' => $name,
-        ]);
+        $instance = \Yii::createObject($flavor);
+        $instance->name = $name;
 
         return $instance;
     }
