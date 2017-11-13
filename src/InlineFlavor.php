@@ -1,4 +1,5 @@
 <?php
+
 namespace vr\environment;
 
 /**
@@ -7,12 +8,21 @@ namespace vr\environment;
  */
 class InlineFlavor extends Flavor
 {
+    public $path = '@app/';
+
     /**
      *
      */
-    public function prepare()
+    public function prepare(): bool
     {
-        // Nothing to do
         return true;
+    }
+
+    /**
+     * @return bool
+     */
+    public function getIsActive(): bool
+    {
+        return file_exists(\Yii::getAlias($this->path . '/' . $this->name));
     }
 }

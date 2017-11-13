@@ -1,4 +1,5 @@
 <?php
+
 namespace vr\environment;
 
 use Closure;
@@ -8,6 +9,7 @@ use yii\helpers\ArrayHelper;
 /**
  * Class Flavor
  * @package vr\environment
+ * @property bool $isActive
  */
 abstract class Flavor extends Object
 {
@@ -34,7 +36,12 @@ abstract class Flavor extends Object
     /**
      * @return bool
      */
-    public abstract function prepare();
+    public abstract function prepare(): bool;
+
+    /**
+     * @return bool
+     */
+    abstract public function getIsActive(): bool;
 
     /**
      *
