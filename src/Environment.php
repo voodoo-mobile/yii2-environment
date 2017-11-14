@@ -1,4 +1,5 @@
 <?php
+
 namespace vr\environment;
 
 use vr\core\ArrayObject;
@@ -7,9 +8,7 @@ use yii\helpers\ArrayHelper;
 
 /**
  * Class Environment
- *
  * Complete new way to describe environment and modifications. Example of configuration
- *
  * 'environment'  => [
  *           'class'   => '\vr\flavors\Environment',
  *          'default' => 'production',
@@ -30,7 +29,6 @@ use yii\helpers\ArrayHelper;
  *              ]
  *          ]
  *      ],
- *
  * @package vr\environment
  */
 class Environment extends Component
@@ -45,11 +43,8 @@ class Environment extends Component
      */
     public $default = null;
 
-    /** @var null  */
-    public $additionalAlias = null;
-
     /**
-     * @var string
+     * @var Flavor
      */
     protected $activeFlavor = null;
 
@@ -58,35 +53,23 @@ class Environment extends Component
      */
     public function init()
     {
-        $found = false;
-
         foreach ($this->flavors as $name => $flavor) {
-            if ($found = (!$found && $this->isActive($name))) {
-                $this->createInstance($flavor, $name);
+            $instance = $this->createInstance($flavor, $name);
 
-                return;
+            if ($instance->isActive) {
+                $this->activeFlavor = $instance;
+                break;
             }
         }
 
-        if (!$found && $this->default) {
-            $this->createInstance(ArrayHelper::getValue($this->flavors, $this->default), $this->default);
-        } else {
-            throw new \Exception('Could not find appropriate flavor to load. Is it even legal?');
-        }
-    }
-
-    /**
-     * @param string $name
-     *
-     * @return bool
-     */
-    protected function isActive($name)
-    {
-        if (!$this->additionalAlias) {
-            return file_exists(\Yii::getAlias('@app/' . $name));
+        if (!$this->activeFlavor && $this->default) {
+            $this->activeFlavor =
+                $this->createInstance(ArrayHelper::getValue($this->flavors, $this->default), $this->default);
         }
 
-        return file_exists(\Yii::getAlias($this->additionalAlias . '/' . $name));
+        if ($this->activeFlavor) {
+            $this->apply($this->activeFlavor);
+        }
     }
 
     /**
@@ -100,9 +83,7 @@ class Environment extends Component
     {
         /** @var Flavor $instance */
         $instance = \Yii::createObject($flavor);
-
-        $this->activeFlavor = $instance->name = $name;
-        $this->apply($instance);
+        $instance->name = $name;
 
         return $instance;
     }
