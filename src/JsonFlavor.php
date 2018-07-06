@@ -32,6 +32,8 @@ class JsonFlavor extends Flavor
 
         $this->components = ArrayHelper::getValue($data, 'components', []);
         $this->params     = ArrayHelper::getValue($data, 'params', []);
+
+        return true;
     }
 
     /**
