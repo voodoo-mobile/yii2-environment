@@ -14,6 +14,11 @@ use yii\helpers\ArrayHelper;
 abstract class Flavor extends Object
 {
     /**
+     * @var string
+     */
+    public $path = '@app/';
+
+    /**
      * @var
      */
     public $name;

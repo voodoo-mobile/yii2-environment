@@ -41,7 +41,7 @@ class JsonFlavor extends Flavor
      */
     public function getIsActive(): bool
     {
-        return file_exists($this->getFile());
+        return file_exists(\Yii::getAlias($this->path . '/' . $this->name)) && file_exists($this->getFile());
     }
 
     /**
