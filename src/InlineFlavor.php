@@ -8,8 +8,6 @@ namespace vr\environment;
  */
 class InlineFlavor extends Flavor
 {
-    public $path = '@app/';
-
     /**
      *
      */
