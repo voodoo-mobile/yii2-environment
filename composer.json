@@ -16,11 +16,11 @@
       "homepage": "http://voodoo.rocks"
     }
   ],
-  "minimum-stability": "dev",
+  "minimum-stability": "stable",
   "require": {
     "php": ">=5.4.0",
     "yiisoft/yii2": "~2.0",
-    "voodoo-rocks/yii2-core": "dev-develop"
+    "voodoo-rocks/yii2-core": "^5.1"
   },
   "autoload": {
     "psr-0": {
