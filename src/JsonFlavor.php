@@ -32,6 +32,8 @@ class JsonFlavor extends Flavor
 
         $this->components = ArrayHelper::getValue($data, 'components', []);
         $this->params     = ArrayHelper::getValue($data, 'params', []);
+
+        return true;
     }
 
     /**
@@ -39,7 +41,7 @@ class JsonFlavor extends Flavor
      */
     public function getIsActive(): bool
     {
-        return file_exists($this->getFile());
+        return file_exists(\Yii::getAlias($this->path . '/' . $this->name)) && file_exists($this->getFile());
     }
 
     /**

@@ -3,7 +3,7 @@
 namespace vr\environment;
 
 use Closure;
-use yii\base\Object;
+use yii\base\BaseObject;
 use yii\helpers\ArrayHelper;
 
 /**
@@ -11,8 +11,13 @@ use yii\helpers\ArrayHelper;
  * @package vr\environment
  * @property bool $isActive
  */
-abstract class Flavor extends Object
+abstract class Flavor extends BaseObject
 {
+    /**
+     * @var string
+     */
+    public $path = '@app/';
+
     /**
      * @var
      */
